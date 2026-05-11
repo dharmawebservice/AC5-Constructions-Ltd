@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>AC5 Constructions Ltd | Our Expertise</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        display: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            base: '#050505',
+                            surface: '#0f0f11',
+                            card: '#161618',
+                            outline: '#2a2a2c',
+                            accent: '#F5A623', /* Premium Gold */
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+
+    <style>
+        /* CORE RESETS & NO SCROLLBAR */
+        html, body {
+            background-color: #050505;
+            color: #ffffff;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            scrollbar-width: none; 
+            -ms-overflow-style: none;  
+        }
+        ::-webkit-scrollbar { display: none; }
+
+        /* Cinematic Noise Overlay */
+        .noise-bg {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        /* Typography & Apple-Style Blur */
+        .text-balance { text-wrap: balance; }
+        
+        #header {
+            transition: background-color 0.4s ease, backdrop-filter 0.4s ease;
+        }
+        .header-scrolled {
+            background-color: rgba(5, 5, 5, 0.75);
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        /* Reveal Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 1s cubic-bezier(0.25, 1, 0.5, 1), transform 1s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Advanced Card Styling */
+        .glass-card {
+            background: linear-gradient(145deg, rgba(22, 22, 24, 0.9) 0%, rgba(15, 15, 17, 0.6) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 32px;
+            overflow: hidden;
+            transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.5s ease;
+        }
+        .glass-card:hover {
+            border-color: rgba(245, 166, 35, 0.3);
+            transform: translateY(-8px);
+        }
+        .card-img-wrapper {
+            overflow: hidden;
+        }
+        .card-img-wrapper img {
+            transition: transform 1.5s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        .glass-card:hover .card-img-wrapper img {
+            transform: scale(1.08);
+        }
+    </style>
+</head>
+
+<body class="font-sans selection:bg-brand-accent selection:text-black">
+
+    <div class="noise-bg"></div>
+
+    <header id="header" class="fixed top-0 left-0 w-full z-50 px-6 md:px-12 py-4 md:py-6 flex justify-between items-center">
+        <a href="index.html" class="z-50 flex items-center group drop-shadow-lg">
+            <img src="assets/images/logo.png" alt="AC5 Constructions Ltd Logo" class="h-12 md:h-14 w-auto object-contain transition-transform duration-500 group-hover:scale-105">
+        </a>
+
+        <nav class="hidden md:flex gap-10 items-center text-[13px] font-bold uppercase tracking-[0.2em] text-gray-200">
+            <a href="studio.html" class="hover:text-brand-accent transition-colors drop-shadow-md">Studio</a>
+            <a href="expertise.html" class="text-brand-accent transition-colors drop-shadow-md">Expertise</a>
+            <a href="works.html" class="hover:text-brand-accent transition-colors drop-shadow-md">Works</a>
+            <a href="inquire.html" class="text-white flex items-center gap-2 group drop-shadow-md">
+                <span class="w-8 h-px bg-brand-accent group-hover:w-12 transition-all duration-300 shadow-sm"></span>
+                Inquire
+            </a>
+        </nav>
+
+        <button id="menu-toggle" class="md:hidden z-50 text-white p-2 drop-shadow-md">
+            <div class="w-8 h-[2px] bg-white mb-2 transition-all origin-right" id="line1"></div>
+            <div class="w-8 h-[2px] bg-white transition-all origin-right" id="line2"></div>
+        </button>
+    </header>
+
+    <div id="mobile-menu" class="fixed inset-0 bg-brand-base/98 backdrop-blur-xl z-40 flex flex-col justify-center px-8 opacity-0 pointer-events-none transition-all duration-500">
+        <nav class="flex flex-col gap-8 text-4xl font-light tracking-tight">
+            <a href="index.html" class="text-gray-500 hover:text-white transition-colors">Home.</a>
+            <a href="studio.html" class="text-gray-500 hover:text-white transition-colors">Studio.</a>
+            <a href="expertise.html" class="text-white hover:text-brand-accent transition-colors">Expertise.</a>
+            <a href="works.html" class="text-gray-500 hover:text-white transition-colors">Works.</a>
+            <a href="inquire.html" class="text-brand-accent font-medium mt-4">Contact.</a>
+        </nav>
+    </div>
+
+    <section class="relative h-[70vh] flex flex-col justify-center items-center text-center px-6 overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=2500&q=80" class="w-full h-full object-cover opacity-30" alt="Structural Framework" id="hero-img">
+            <div class="absolute inset-x-0 bottom-0 h-[50vh] bg-gradient-to-t from-brand-base to-transparent"></div>
+        </div>
+
+        <div class="relative z-10 w-full max-w-4xl mx-auto mt-20">
+            <div class="reveal">
+                <div class="inline-flex items-center gap-3 mb-6 px-4 py-1.5 rounded-full border border-brand-outline bg-brand-surface/50 backdrop-blur-md">
+                    <span class="w-2 h-2 rounded-full bg-brand-accent animate-pulse"></span>
+                    <p class="text-white text-xs font-bold uppercase tracking-[0.2em]">Our Disciplines</p>
+                </div>
+                <h1 class="text-5xl md:text-7xl font-extrabold tracking-tighter text-balance leading-[1.1]">
+                    Mastery in every <br> structural detail.
+                </h1>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 px-6 md:px-12 bg-brand-base">
+        <div class="max-w-7xl mx-auto flex flex-col lg:flex-row gap-16 lg:gap-24 relative">
+            
+            <div class="lg:w-1/3">
+                <div class="sticky top-32 reveal">
+                    <h2 class="text-4xl md:text-5xl font-bold tracking-tight leading-tight mb-6">
+                        Engineered for <br> <span class="text-brand-accent">Excellence.</span>
+                    </h2>
+                    <p class="text-gray-400 font-light leading-relaxed text-lg mb-8">
+                        We manage complex builds from conception to completion. Our technical capabilities span across three core disciplines, ensuring every project benefits from specialized knowledge and uncompromised British standards.
+                    </p>
+                    <a href="works.html" class="inline-flex items-center gap-3 text-sm font-bold uppercase tracking-[0.2em] text-white group hover:text-brand-accent transition-colors">
+                        View our Work
+                        <i class="fa-solid fa-arrow-right transform group-hover:translate-x-2 transition-transform"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="lg:w-2/3 flex flex-col gap-12">
+                
+                <div class="glass-card reveal">
+                    <div class="card-img-wrapper h-64 md:h-80 w-full border-b border-white/5 relative">
+                        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80" class="w-full h-full object-cover" alt="Domestic Builds">
+                        <div class="absolute inset-0 bg-black/20"></div>
+                    </div>
+                    <div class="p-8 md:p-12">
+                        <div class="flex items-center justify-between mb-6">
+                            <h3 class="text-3xl md:text-4xl font-bold text-white tracking-tight">Domestic Builds</h3>
+                            <span class="text-brand-accent font-mono text-xl">01</span>
+                        </div>
+                        <p class="text-gray-400 text-lg font-light leading-relaxed">
+                            Premium ground-up residential architecture. We control the entire construction lifecycle to deliver homes that stand the test of time, utilizing the finest materials and modern structural techniques to forge your exact vision.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="glass-card reveal">
+                    <div class="card-img-wrapper h-64 md:h-80 w-full border-b border-white/5 relative">
+                        <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1200&q=80" class="w-full h-full object-cover" alt="Renovations">
+                        <div class="absolute inset-0 bg-black/20"></div>
+                    </div>
+                    <div class="p-8 md:p-12">
+                        <div class="flex items-center justify-between mb-6">
+                            <h3 class="text-3xl md:text-4xl font-bold text-white tracking-tight">Renovations</h3>
+                            <span class="text-brand-accent font-mono text-xl">02</span>
+                        </div>
+                        <p class="text-gray-400 text-lg font-light leading-relaxed">
+                            Complete spatial transformations. We honor original architecture while injecting modern functionality, tearing down structural barriers to create expansive, light-filled environments suited for contemporary living.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="glass-card reveal">
+                    <div class="card-img-wrapper h-64 md:h-80 w-full border-b border-white/5 relative">
+                        <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80" class="w-full h-full object-cover" alt="Structural Works">
+                        <div class="absolute inset-0 bg-black/20"></div>
+                    </div>
+                    <div class="p-8 md:p-12">
+                        <div class="flex items-center justify-between mb-6">
+                            <h3 class="text-3xl md:text-4xl font-bold text-white tracking-tight">Structural Works</h3>
+                            <span class="text-brand-accent font-mono text-xl">03</span>
+                        </div>
+                        <p class="text-gray-400 text-lg font-light leading-relaxed">
+                            The backbone of our firm. Core engineering, complex extensions, and precise load-bearing modifications. Every structural element is executed with absolute safety, mathematical precision, and rigorous compliance.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="py-32 px-6 md:px-12 bg-[#080809] border-y border-brand-outline relative overflow-hidden">
+        <div class="max-w-7xl mx-auto relative z-10">
+            <div class="text-center mb-20 reveal">
+                <h2 class="text-4xl md:text-5xl font-bold tracking-tight mb-4">The AC5 Process.</h2>
+                <p class="text-gray-400 text-lg font-light">From initial blueprint to final handover.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8 relative">
+                <div class="hidden md:block absolute top-1/2 left-[10%] right-[10%] h-px bg-brand-outline -z-10"></div>
+
+                <div class="bg-brand-base border border-brand-outline rounded-3xl p-10 text-center reveal">
+                    <div class="w-16 h-16 rounded-full bg-brand-surface border border-brand-outline flex items-center justify-center mx-auto mb-6">
+                        <span class="text-brand-accent font-mono text-lg">I</span>
+                    </div>
+                    <h4 class="text-2xl font-bold mb-3 text-white">Consultation</h4>
+                    <p class="text-gray-500 font-light text-sm">Site analysis, structural feasibility, and architectural vision alignment.</p>
+                </div>
+
+                <div class="bg-brand-base border border-brand-outline rounded-3xl p-10 text-center reveal" style="transition-delay: 0.1s;">
+                    <div class="w-16 h-16 rounded-full bg-brand-surface border border-brand-outline flex items-center justify-center mx-auto mb-6">
+                        <span class="text-brand-accent font-mono text-lg">II</span>
+                    </div>
+                    <h4 class="text-2xl font-bold mb-3 text-white">Engineering</h4>
+                    <p class="text-gray-500 font-light text-sm">Rigorous structural planning, material sourcing, and compliance checks.</p>
+                </div>
+
+                <div class="bg-brand-base border border-brand-outline rounded-3xl p-10 text-center reveal" style="transition-delay: 0.2s;">
+                    <div class="w-16 h-16 rounded-full bg-brand-surface border border-brand-outline flex items-center justify-center mx-auto mb-6">
+                        <span class="text-brand-accent font-mono text-lg">III</span>
+                    </div>
+                    <h4 class="text-2xl font-bold mb-3 text-white">Execution</h4>
+                    <p class="text-gray-500 font-light text-sm">Flawless on-site construction, continuous management, and premium handover.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-[#0a0a0c] pt-24 pb-8 px-6 md:px-12">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8 mb-16">
+            
+            <div class="md:col-span-5 lg:col-span-4">
+                <a href="index.html" class="inline-block mb-6 hover:opacity-80 transition-opacity">
+                    <img src="assets/images/logo.png" alt="AC5 Constructions Ltd Logo" class="h-14 w-auto object-contain">
+                </a>
+                <p class="text-gray-400 text-sm md:text-[15px] font-light leading-relaxed pr-4">
+                    At AC5 Constructions Ltd, we are committed to building enduring spaces by delivering premium domestic construction and structural engineering across the UK.
+                </p>
+            </div>
+
+            <div class="hidden lg:block lg:col-span-2"></div>
+
+            <div class="md:col-span-3 lg:col-span-3">
+                <h4 class="text-white text-[17px] font-semibold mb-6 tracking-wide">Quick Links</h4>
+                <ul class="flex flex-col gap-4 text-gray-400 text-[15px] font-light">
+                    <li><a href="studio.html" class="hover:text-brand-accent transition-colors">About Us</a></li>
+                    <li><a href="expertise.html" class="hover:text-brand-accent transition-colors">Services</a></li>
+                    <li><a href="works.html" class="hover:text-brand-accent transition-colors">Projects</a></li>
+                    <li><a href="inquire.html" class="hover:text-brand-accent transition-colors">Contact Us</a></li>
+                </ul>
+            </div>
+
+            <div class="md:col-span-4 lg:col-span-3">
+                <h4 class="text-white text-[17px] font-semibold mb-6 tracking-wide">Contact Us</h4>
+                <ul class="flex flex-col gap-6 text-gray-400 text-[15px] font-light">
+                    <li class="flex items-start gap-4">
+                        <i class="fa-solid fa-map-location-dot text-brand-accent mt-1 text-lg"></i>
+                        <span class="leading-relaxed">Flat 309 Fauna House,<br>14 Fresh Wharf Road,<br>Barking, England</span>
+                    </li>
+                    <li class="flex items-center gap-4">
+                        <i class="fa-regular fa-envelope text-brand-accent text-lg"></i>
+                        <a href="mailto:ac5constructions@gmail.com" class="hover:text-brand-accent transition-colors break-all">ac5constructions@gmail.com</a>
+                    </li>
+                    <li class="flex items-center gap-4">
+                        <i class="fa-solid fa-mobile-screen-button text-brand-accent text-lg pl-1"></i>
+                        <a href="tel:+447776858501" class="hover:text-brand-accent transition-colors">+44 7776 858501</a>
+                    </li>
+                </ul>
+            </div>
+            
+        </div>
+
+        <div class="max-w-7xl mx-auto border-t border-white/10 pt-8 flex flex-col-reverse md:flex-row justify-between items-center gap-6">
+            
+            <div class="text-gray-400 text-xs md:text-[11px] tracking-[0.15em] uppercase flex flex-col md:flex-row items-center gap-3 text-center md:text-left font-medium">
+                <span>&copy; 2026 AC5 Constructions. All Rights Reserved.</span>
+                <span class="hidden md:block w-1 h-1 rounded-full bg-white/20"></span>
+                <span class="flex items-center gap-1.5">
+                    POWERED BY 
+                    <a href="https://dws.monster" target="_blank" rel="noopener noreferrer" class="relative group text-white tracking-widest px-1">
+                        <span class="relative z-10 group-hover:text-brand-accent transition-colors duration-300">DWS</span>
+                        <span class="absolute left-0 bottom-0 w-full h-[1px] bg-brand-accent origin-right transform scale-x-0 group-hover:scale-x-100 group-hover:origin-left transition-transform duration-300 ease-out"></span>
+                    </a>
+                </span>
+            </div>
+
+            <div class="flex gap-6 text-white text-lg">
+                <a href="#" aria-label="Facebook" class="hover:text-brand-accent hover:-translate-y-1 transition-transform duration-300"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="#" aria-label="Twitter" class="hover:text-brand-accent hover:-translate-y-1 transition-transform duration-300"><i class="fa-brands fa-twitter"></i></a>
+                <a href="#" aria-label="YouTube" class="hover:text-brand-accent hover:-translate-y-1 transition-transform duration-300"><i class="fa-brands fa-youtube"></i></a>
+                <a href="#" aria-label="Instagram" class="hover:text-brand-accent hover:-translate-y-1 transition-transform duration-300"><i class="fa-brands fa-instagram"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/447776858501" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp" class="fixed bottom-6 right-6 md:bottom-8 md:right-8 z-50 bg-[#25D366] text-white w-14 h-14 md:w-16 md:h-16 rounded-full flex items-center justify-center text-2xl md:text-3xl shadow-2xl hover:scale-110 transition-transform duration-300">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <script>
+        /**
+         * HEADER SCROLL LOGIC
+         */
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('header-scrolled');
+            } else {
+                header.classList.remove('header-scrolled');
+            }
+        }, { passive: true });
+
+        /**
+         * MOBILE MENU TOGGLE
+         */
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const line1 = document.getElementById('line1');
+        const line2 = document.getElementById('line2');
+        let isMenuOpen = false;
+
+        function toggleMobileMenu() {
+            isMenuOpen = !isMenuOpen;
+            if (isMenuOpen) {
+                mobileMenu.classList.remove('opacity-0', 'pointer-events-none');
+                line1.style.transform = 'rotate(-45deg) translate(-5px, 6px)';
+                line2.style.transform = 'rotate(45deg) translate(-5px, -6px)';
+            } else {
+                mobileMenu.classList.add('opacity-0', 'pointer-events-none');
+                line1.style.transform = 'none';
+                line2.style.transform = 'none';
+            }
+        }
+
+        menuToggle.addEventListener('click', toggleMobileMenu);
+
+        /**
+         * SCROLL REVEAL ANIMATIONS
+         */
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px"
+        });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // Trigger immediate reveal for hero section
+        setTimeout(() => {
+            document.querySelectorAll('#hero-img, .reveal:first-child').forEach(el => el.classList.add('active'));
+        }, 100);
+
+        /**
+         * SUBTLE HERO PARALLAX
+         */
+        const heroImg = document.getElementById('hero-img');
+        if(heroImg) {
+            window.addEventListener('scroll', () => {
+                if(window.scrollY < window.innerHeight) {
+                    heroImg.style.transform = `scale(1.05) translateY(${window.scrollY * 0.3}px)`;
+                }
+            }, { passive: true });
+        }
+    </script>
+</body>
+
+</html>

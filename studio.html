@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>AC5 Constructions Ltd | The Studio & Reviews</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        display: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            base: '#050505',
+                            surface: '#0f0f11',
+                            outline: '#222225',
+                            accent: '#F5A623', /* Premium Gold */
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+
+    <style>
+        /* HIDING SCROLLBAR & CORE RESETS */
+        html, body {
+            background-color: #050505;
+            color: #ffffff;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            scrollbar-width: none; 
+            -ms-overflow-style: none;  
+        }
+        
+        ::-webkit-scrollbar {
+            display: none; 
+        }
+
+        /* Cinematic Noise Overlay */
+        .noise-bg {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        /* Typography */
+        .text-balance { text-wrap: balance; }
+        .text-outline {
+            color: transparent;
+            -webkit-text-stroke: 1px rgba(255, 255, 255, 0.2);
+        }
+
+        /* Smart Header Transition */
+        #header {
+            transition: background-color 0.4s ease, backdrop-filter 0.4s ease;
+        }
+        .header-scrolled {
+            background-color: rgba(5, 5, 5, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* Smooth Reveal Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 1s cubic-bezier(0.25, 1, 0.5, 1), transform 1s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Review Card Glow Effect */
+        .review-card {
+            transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.4s ease;
+        }
+        .review-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(245, 166, 35, 0.4);
+            box-shadow: 0 20px 40px -10px rgba(245, 166, 35, 0.05);
+        }
+    </style>
+</head>
+
+<body class="font-sans selection:bg-brand-accent selection:text-black">
+
+    <div class="noise-bg"></div>
+
+    <header id="header" class="fixed top-0 left-0 w-full z-50 px-6 md:px-12 py-4 md:py-6 flex justify-between items-center">
+        
+        <a href="index.html" class="z-50 flex items-center group drop-shadow-lg">
+            <img src="assets/images/logo.png" alt="AC5 Constructions Ltd Logo" class="h-12 md:h-14 w-auto object-contain transition-transform duration-500 group-hover:scale-105">
+        </a>
+
+        <nav class="hidden md:flex gap-10 items-center text-[13px] font-bold uppercase tracking-[0.2em] text-gray-200">
+            <a href="studio.html" class="text-brand-accent transition-colors drop-shadow-md">Studio</a>
+            <a href="expertise.html" class="hover:text-brand-accent transition-colors drop-shadow-md">Expertise</a>
+            <a href="works.html" class="hover:text-brand-accent transition-colors drop-shadow-md">Works</a>
+            <a href="inquire.html" class="text-white flex items-center gap-2 group drop-shadow-md">
+                <span class="w-8 h-px bg-brand-accent group-hover:w-12 transition-all duration-300 shadow-sm"></span>
+                Inquire
+            </a>
+        </nav>
+
+        <button id="menu-toggle" class="md:hidden z-50 text-white p-2 drop-shadow-md">
+            <div class="w-8 h-[2px] bg-white mb-2 transition-all origin-right" id="line1"></div>
+            <div class="w-8 h-[2px] bg-white transition-all origin-right" id="line2"></div>
+        </button>
+    </header>
+
+    <div id="mobile-menu" class="fixed inset-0 bg-brand-base/98 backdrop-blur-xl z-40 flex flex-col justify-center px-8 opacity-0 pointer-events-none transition-all duration-500">
+        <nav class="flex flex-col gap-8 text-4xl font-light tracking-tight">
+            <a href="index.html" class="mobile-nav-link text-gray-500 hover:text-white transition-colors">Home.</a>
+            <a href="studio.html" class="mobile-nav-link text-white hover:text-brand-accent transition-colors">Studio.</a>
+            <a href="expertise.html" class="mobile-nav-link text-gray-500 hover:text-white transition-colors">Expertise.</a>
+            <a href="works.html" class="mobile-nav-link text-gray-500 hover:text-white transition-colors">Works.</a>
+            <a href="inquire.html" class="mobile-nav-link text-brand-accent font-medium mt-4">Contact.</a>
+        </nav>
+    </div>
+
+    <section class="relative h-[70vh] flex flex-col justify-end pb-24 px-6 md:px-12 overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=2500&q=80" class="w-full h-full object-cover scale-105" alt="Architectural Detail" id="hero-img">
+            <div class="absolute inset-x-0 top-0 h-[30vh] bg-gradient-to-b from-black/90 via-black/30 to-transparent"></div>
+            <div class="absolute inset-x-0 bottom-0 h-[60vh] bg-gradient-to-t from-brand-base via-brand-base/80 to-transparent"></div>
+        </div>
+
+        <div class="relative z-10 w-full max-w-7xl mx-auto">
+            <div class="reveal">
+                <p class="text-brand-accent text-xs md:text-sm font-bold uppercase tracking-[0.3em] mb-4 drop-shadow-md">Our Story</p>
+                <h1 class="text-5xl md:text-[6rem] lg:text-[7rem] font-extrabold leading-[0.9] tracking-tighter text-balance">
+                    THE <br>
+                    <span class="text-outline">STUDIO.</span>
+                </h1>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 px-6 md:px-12 bg-brand-base">
+        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+            
+            <div class="reveal flex flex-col justify-center">
+                <h2 class="text-3xl md:text-5xl font-bold tracking-tight mb-8 leading-tight">
+                    Built on vision.<br>Engineered to excel.
+                </h2>
+                <div class="space-y-6 text-gray-400 font-light leading-relaxed text-lg">
+                    <p>
+                        AC5 Constructions Ltd was founded on a singular principle: absolute architectural precision. We are a premium domestic construction firm based in Barking, UK, specializing in delivering uncompromising quality in every build.
+                    </p>
+                    <p>
+                        Our team operates at the intersection of modern aesthetic design and rigorous structural engineering. Whether we are executing a ground-up residential build or orchestrating a complex structural renovation, we strip away the unnecessary to reveal pure structural perfection.
+                    </p>
+                    <p>
+                        Led by Director C. Anil, our studio approaches every project as a unique masterpiece, ensuring that our client's vision is forged in steel, stone, and glass to stand the test of time.
+                    </p>
+                </div>
+            </div>
+
+            <div class="reveal relative">
+                <div class="absolute -inset-4 border border-brand-outline rounded-[32px] hidden md:block"></div>
+                <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1200&q=80" class="w-full h-[500px] md:h-[650px] object-cover rounded-[24px] relative z-10 grayscale hover:grayscale-0 transition-all duration-700" alt="Architecture Structure">
+            </div>
+
+        </div>
+    </section>
+
+    <div class="border-y border-brand-outline bg-brand-surface py-16">
+        <div class="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-2 md:grid-cols-4 gap-12 text-center reveal">
+            <div>
+                <h3 class="text-5xl md:text-6xl font-extrabold text-white mb-3">50<span class="text-brand-accent">+</span></h3>
+                <p class="text-[11px] text-gray-500 font-bold uppercase tracking-[0.2em]">Projects Completed</p>
+            </div>
+            <div>
+                <h3 class="text-5xl md:text-6xl font-extrabold text-white mb-3">100<span class="text-brand-accent">%</span></h3>
+                <p class="text-[11px] text-gray-500 font-bold uppercase tracking-[0.2em]">Client Satisfaction</p>
+            </div>
+            <div>
+                <h3 class="text-5xl md:text-6xl font-extrabold text-white mb-3">2024</h3>
+                <p class="text-[11px] text-gray-500 font-bold uppercase tracking-[0.2em]">Year Established</p>
+            </div>
+            <div>
+                <h3 class="text-5xl md:text-6xl font-extrabold text-white mb-3">1<span class="text-brand-accent">st</span></h3>
+                <p class="text-[11px] text-gray-500 font-bold uppercase tracking-[0.2em]">Class Engineering</p>
+            </div>
+        </div>
+    </div>
+
+    <section class="py-32 px-6 md:px-12 bg-brand-base relative overflow-hidden">
+        
+        <div class="absolute top-0 right-0 w-[800px] h-[800px] bg-brand-accent/5 rounded-full blur-[150px] pointer-events-none z-0 translate-x-1/2 -translate-y-1/2"></div>
+
+        <div class="max-w-7xl mx-auto relative z-10">
+            
+            <div class="flex flex-col md:flex-row justify-between md:items-end mb-20 reveal">
+                <div>
+                    <p class="text-brand-accent text-xs font-bold uppercase tracking-[0.2em] mb-4">Client Voices</p>
+                    <h2 class="text-4xl md:text-6xl font-bold tracking-tight">Reputation.</h2>
+                </div>
+                <p class="max-w-sm text-gray-400 mt-6 md:mt-0 font-light text-sm md:text-base leading-relaxed">
+                    Don't just take our word for it. Hear what our clients say about the AC5 standard of excellence.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                
+                <div class="review-card bg-brand-surface border border-brand-outline p-10 rounded-[32px] reveal flex flex-col">
+                    <div class="flex gap-1.5 text-brand-accent text-sm mb-8">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-gray-300 text-lg font-light leading-relaxed mb-10 flex-grow">
+                        "AC5 Constructions transformed our vision into reality. The precision in their structural work and their attention to detail is simply unmatched in the industry. Highly recommended."
+                    </p>
+                    <div class="border-t border-brand-outline pt-6">
+                        <p class="text-white font-bold tracking-wide">James & Sarah L.</p>
+                        <p class="text-gray-500 text-xs font-bold uppercase tracking-widest mt-1">Complete Domestic Build</p>
+                    </div>
+                </div>
+
+                <div class="review-card bg-brand-surface border border-brand-outline p-10 rounded-[32px] reveal flex flex-col" style="transition-delay: 0.1s;">
+                    <div class="flex gap-1.5 text-brand-accent text-sm mb-8">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-gray-300 text-lg font-light leading-relaxed mb-10 flex-grow">
+                        "We hired AC5 for a complex renovation involving load-bearing wall removals. Their engineering expertise gave us total peace of mind. The finished space is flawless."
+                    </p>
+                    <div class="border-t border-brand-outline pt-6">
+                        <p class="text-white font-bold tracking-wide">David M.</p>
+                        <p class="text-gray-500 text-xs font-bold uppercase tracking-widest mt-1">Structural Renovation</p>
+                    </div>
+                </div>
+
+                <div class="review-card bg-brand-surface border border-brand-outline p-10 rounded-[32px] reveal flex flex-col" style="transition-delay: 0.2s;">
+                    <div class="flex gap-1.5 text-brand-accent text-sm mb-8">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-gray-300 text-lg font-light leading-relaxed mb-10 flex-grow">
+                        "Professional, punctual, and premium. The team at AC5 handled our project with incredible care. The minimalist, clean finishes they delivered are exactly what we asked for."
+                    </p>
+                    <div class="border-t border-brand-outline pt-6">
+                        <p class="text-white font-bold tracking-wide">Elena R.</p>
+                        <p class="text-gray-500 text-xs font-bold uppercase tracking-widest mt-1">Interior Architecture</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-[#0a0a0c] pt-24 pb-8 px-6 md:px-12 border-t border-brand-outline">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8 mb-16">
+            
+            <div class="md:col-span-5 lg:col-span-4">
+                <a href="index.html" class="inline-block mb-6 hover:opacity-80 transition-opacity">
+                    <img src="assets/images/logo.png" alt="AC5 Constructions Ltd Logo" class="h-14 w-auto object-contain">
+                </a>
+                <p class="text-gray-400 text-sm md:text-[15px] font-light leading-relaxed pr-4">
+                    At AC5 Constructions Ltd, we are committed to building enduring spaces by delivering premium domestic construction and structural engineering across the UK.
+                </p>
+            </div>
+
+            <div class="hidden lg:block lg:col-span-2"></div>
+
+            <div class="md:col-span-3 lg:col-span-3">
+                <h4 class="text-white text-[17px] font-semibold mb-6 tracking-wide">Quick Links</h4>
+                <ul class="flex flex-col gap-4 text-gray-400 text-[15px] font-light">
+                    <li><a href="studio.html" class="hover:text-brand-accent transition-colors">About Us</a></li>
+                    <li><a href="expertise.html" class="hover:text-brand-accent transition-colors">Services</a></li>
+                    <li><a href="works.html" class="hover:text-brand-accent transition-colors">Projects</a></li>
+                    <li><a href="inquire.html" class="hover:text-brand-accent transition-colors">Contact Us</a></li>
+                </ul>
+            </div>
+
+            <div class="md:col-span-4 lg:col-span-3">
+                <h4 class="text-white text-[17px] font-semibold mb-6 tracking-wide">Contact Us</h4>
+                <ul class="flex flex-col gap-6 text-gray-400 text-[15px] font-light">
+                    <li class="flex items-start gap-4">
+                        <i class="fa-solid fa-map-location-dot text-brand-accent mt-1 text-lg"></i>
+                        <span class="leading-relaxed">Flat 309 Fauna House,<br>14 Fresh Wharf Road,<br>Barking, England</span>
+                    </li>
+                    <li class="flex items-center gap-4">
+                        <i class="fa-regular fa-envelope text-brand-accent text-lg"></i>
+                        <a href="mailto:ac5constructions@gmail.com" class="hover:text-brand-accent transition-colors break-all">ac5constructions@gmail.com</a>
+                    </li>
+                    <li class="flex items-center gap-4">
+                        <i class="fa-solid fa-mobile-screen-button text-brand-accent text-lg pl-1"></i>
+                        <a href="tel:+447776858501" class="hover:text-brand-accent transition-colors">+44 7776 858501</a>
+                    </li>
+                </ul>
+            </div>
+            
+        </div>
+
+        <div class="max-w-7xl mx-auto border-t border-white/10 pt-8 flex flex-col-reverse md:flex-row justify-between items-center gap-6">
+            
+            <div class="text-gray-400 text-xs md:text-[11px] tracking-[0.15em] uppercase flex flex-col md:flex-row items-center gap-3 text-center md:text-left font-medium">
+                <span>&copy; 2026 AC5 Constructions. All Rights Reserved.</span>
+                <span class="hidden md:block w-1 h-1 rounded-full bg-white/20"></span>
+                <span class="flex items-center gap-1.5">
+                    POWERED BY 
+                    <a href="https://dws.monster" target="_blank" rel="noopener noreferrer" class="relative group text-white tracking-widest px-1">
+                        <span class="relative z-10 group-hover:text-brand-accent transition-colors duration-300">DWS</span>
+                        <span class="absolute left-0 bottom-0 w-full h-[1px] bg-brand-accent origin-right transform scale-x-0 group-hover:scale-x-100 group-hover:origin-left transition-transform duration-300 ease-out"></span>
+                    </a>
+                </span>
+            </div>
+
+            <div class="flex gap-6 text-white text-lg">
+                <a href="#" aria-label="Facebook" class="hover:text-brand-accent hover:-translate-y-1 transition-transform duration-300"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="#" aria-label="Twitter" class="hover:text-brand-accent hover:-translate-y-1 transition-transform duration-300"><i class="fa-brands fa-twitter"></i></a>
+                <a href="#" aria-label="YouTube" class="hover:text-brand-accent hover:-translate-y-1 transition-transform duration-300"><i class="fa-brands fa-youtube"></i></a>
+                <a href="#" aria-label="Instagram" class="hover:text-brand-accent hover:-translate-y-1 transition-transform duration-300"><i class="fa-brands fa-instagram"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/447776858501" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp" class="fixed bottom-6 right-6 md:bottom-8 md:right-8 z-50 bg-[#25D366] text-white w-14 h-14 md:w-16 md:h-16 rounded-full flex items-center justify-center text-2xl md:text-3xl shadow-2xl hover:scale-110 transition-transform duration-300">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <script>
+        /**
+         * 1. HEADER SCROLL LOGIC
+         */
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('header-scrolled');
+            } else {
+                header.classList.remove('header-scrolled');
+            }
+        }, { passive: true });
+
+        /**
+         * 2. MOBILE MENU TOGGLE
+         */
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const line1 = document.getElementById('line1');
+        const line2 = document.getElementById('line2');
+        let isMenuOpen = false;
+
+        function toggleMobileMenu() {
+            isMenuOpen = !isMenuOpen;
+            if (isMenuOpen) {
+                mobileMenu.classList.remove('opacity-0', 'pointer-events-none');
+                line1.style.transform = 'rotate(-45deg) translate(-5px, 6px)';
+                line2.style.transform = 'rotate(45deg) translate(-5px, -6px)';
+            } else {
+                mobileMenu.classList.add('opacity-0', 'pointer-events-none');
+                line1.style.transform = 'none';
+                line2.style.transform = 'none';
+            }
+        }
+
+        menuToggle.addEventListener('click', toggleMobileMenu);
+
+        /**
+         * 3. SCROLL REVEAL ANIMATIONS
+         */
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px"
+        });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // Trigger immediate reveal for hero section
+        setTimeout(() => {
+            document.querySelectorAll('#home .reveal, .reveal:first-child').forEach(el => el.classList.add('active'));
+        }, 100);
+
+        /**
+         * 4. SUBTLE HERO PARALLAX
+         */
+        const heroImg = document.getElementById('hero-img');
+        if(heroImg) {
+            window.addEventListener('scroll', () => {
+                if(window.scrollY < window.innerHeight) {
+                    heroImg.style.transform = `scale(1.05) translateY(${window.scrollY * 0.3}px)`;
+                }
+            }, { passive: true });
+        }
+    </script>
+</body>
+
+</html>
