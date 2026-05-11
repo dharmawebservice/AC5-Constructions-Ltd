@@ -52,7 +52,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/png" href="assets/images/logo.png">
+    <link rel="icon" type="image/png" href="../assets/images/logo.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
 
     <style>
@@ -158,19 +158,28 @@
 
     <header id="header" class="fixed top-0 left-0 w-full z-50 px-6 md:px-12 py-4 md:py-6 flex justify-between items-center">
         
-        <a href="index.html" class="nav-link z-50 flex items-center group drop-shadow-lg">
-            <img src="assets/images/logo.png" alt="AC5 Constructions Ltd Logo" class="h-12 md:h-14 w-auto object-contain transition-transform duration-500 group-hover:scale-105">
+        <a href="/" class="nav-link z-50 flex items-center group drop-shadow-lg">
+            <img src="../assets/images/logo.png" alt="AC5 Constructions Ltd Logo" class="h-12 md:h-14 w-auto object-contain transition-transform duration-500 group-hover:scale-105">
         </a>
 
         <nav class="hidden md:flex gap-10 items-center text-[13px] font-bold uppercase tracking-[0.2em] text-gray-200">
-            <a href="studio/index.html" class="nav-link hover:text-brand-accent transition-colors drop-shadow-md">Studio</a>
-            <a href="expertise/index.html" class="nav-link hover:text-brand-accent transition-colors drop-shadow-md">Expertise</a>
-            <a href="works/index.html" class="nav-link hover:text-brand-accent transition-colors drop-shadow-md">Works</a>
-            <a href="inquire/index.html" class="nav-link text-white flex items-center gap-2 group drop-shadow-md">
-                <span class="w-8 h-px bg-brand-accent group-hover:w-12 transition-all duration-300 shadow-sm"></span>
-                Inquire
-            </a>
-        </nav>
+    <a href="/studio" class="hover:text-brand-accent transition-colors">
+        Studio
+    </a>
+
+    <a href="/expertise" class="hover:text-brand-accent transition-colors">
+        Expertise
+    </a>
+
+    <a href="/works" class="hover:text-brand-accent transition-colors">
+        Works
+    </a>
+
+    <a href="/inquire" class="text-white flex items-center gap-2 group">
+        <span class="w-8 h-px bg-brand-accent group-hover:w-12 transition-all duration-300"></span>
+        Inquire
+    </a>
+</nav>
 
         <button id="menu-toggle" class="md:hidden z-50 text-white p-2 drop-shadow-md" aria-label="Toggle Menu">
             <div class="w-8 h-[2px] bg-white mb-2 transition-all origin-right" id="line1"></div>
@@ -178,15 +187,34 @@
         </button>
     </header>
 
-    <div id="mobile-menu" class="fixed inset-0 bg-brand-base/98 backdrop-blur-xl z-40 flex flex-col justify-center px-8 opacity-0 pointer-events-none transition-all duration-500">
-        <nav class="flex flex-col gap-8 text-4xl font-light tracking-tight">
-            <a href="index.html" class="nav-link mobile-nav-link text-white hover:text-brand-accent transition-colors">Home.</a>
-            <a href="studio/index.html" class="nav-link mobile-nav-link text-gray-500 hover:text-white transition-colors">Studio.</a>
-            <a href="expertise/index.html" class="nav-link mobile-nav-link text-gray-500 hover:text-white transition-colors">Expertise.</a>
-            <a href="works/index.html" class="nav-link mobile-nav-link text-gray-500 hover:text-white transition-colors">Works.</a>
-            <a href="inquire/index.html" class="nav-link mobile-nav-link text-brand-accent font-medium mt-4">Inquire.</a>
-        </nav>
-    </div>
+    <div id="mobile-menu"
+class="fixed inset-0 bg-brand-base/98 backdrop-blur-xl z-40 flex flex-col justify-center px-8 opacity-0 pointer-events-none transition-all duration-500">
+
+    <nav class="flex flex-col gap-8 text-4xl font-light tracking-tight">
+
+        <a href="/" class="mobile-nav-link text-gray-500 hover:text-white transition-colors">
+        Home.
+        </a>
+
+        <a href="/studio" class="mobile-nav-link text-white hover:text-brand-accent transition-colors">
+        Studio.
+        </a>
+
+        <a href="/expertise" class="mobile-nav-link text-gray-500 hover:text-white transition-colors">
+        Expertise.
+        </a>
+
+        <a href="/works" class="mobile-nav-link text-gray-500 hover:text-white transition-colors">
+        Works.
+        </a>
+
+        <a href="/inquire" class="mobile-nav-link text-brand-accent font-medium mt-4">
+        Inquire.
+        </a>
+
+    </nav>
+
+</div>
 
     <section id="home" class="relative h-screen flex flex-col justify-end pb-24 px-6 md:px-12 overflow-hidden">
         <div class="absolute inset-0 z-0">
@@ -406,8 +434,8 @@
         <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8 mb-16">
             
             <div class="md:col-span-5 lg:col-span-4">
-                <a href="index.html" class="nav-link inline-block mb-6 hover:opacity-80 transition-opacity">
-                    <img src="assets/images/logo.png" alt="AC5 Constructions Ltd Logo" class="h-14 w-auto object-contain">
+                <a href="/" class="nav-link inline-block mb-6 hover:opacity-80 transition-opacity">
+                    <img src="../assets/images/logo.png" alt="AC5 Constructions Ltd Logo" class="h-14 w-auto object-contain">
                 </a>
                 <p class="text-gray-400 text-sm md:text-[15px] font-light leading-relaxed pr-4">
                     At AC5 Constructions Ltd, we are committed to building enduring spaces by delivering premium domestic construction and structural engineering across the UK.
@@ -419,10 +447,10 @@
             <div class="md:col-span-3 lg:col-span-3">
                 <h4 class="text-white text-[17px] font-semibold mb-6 tracking-wide">Quick Links</h4>
                 <ul class="flex flex-col gap-4 text-gray-400 text-[15px] font-light">
-                    <li><a href="studio/index.html" class="nav-link hover:text-brand-accent transition-colors">About Us</a></li>
-                    <li><a href="expertise/index.html" class="nav-link hover:text-brand-accent transition-colors">Expertise</a></li>
-                    <li><a href="works/index.html" class="nav-link hover:text-brand-accent transition-colors">Works</a></li>
-                    <li><a href="inquire/index.html" class="nav-link hover:text-brand-accent transition-colors">Inquire</a></li>
+                    <li><a href="studio/" class="nav-link hover:text-brand-accent transition-colors">About Us</a></li>
+                    <li><a href="expertise/" class="nav-link hover:text-brand-accent transition-colors">Expertise</a></li>
+                    <li><a href="works/" class="nav-link hover:text-brand-accent transition-colors">Works</a></li>
+                    <li><a href="inquire/" class="nav-link hover:text-brand-accent transition-colors">Inquire</a></li>
                 </ul>
             </div>
 
