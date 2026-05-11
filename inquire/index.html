@@ -19,7 +19,7 @@
                             base: '#050505',
                             surface: '#0f0f11',
                             outline: '#222225',
-                            accent: '#F5A623', /* Premium Gold */
+                            accent: '#F5A623', 
                         }
                     }
                 }
@@ -30,11 +30,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
+    <link rel="icon" type="image/png" href="assets/images/logo.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
 
     <style>
-        /* CORE RESETS */
+
         html, body {
             background-color: #050505;
             color: #ffffff;
@@ -45,7 +45,7 @@
         }
         ::-webkit-scrollbar { display: none; }
 
-        /* Cinematic Noise Overlay */
+
         .noise-bg {
             position: fixed;
             top: 0; left: 0; width: 100vw; height: 100vh;
@@ -55,13 +55,12 @@
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
         }
 
-        /* Typography */
+
         .text-outline {
             color: transparent;
             -webkit-text-stroke: 1px rgba(255, 255, 255, 0.3);
         }
 
-        /* Header (Always slightly dark for perfect contrast) */
         #header {
             background-color: rgba(5, 5, 5, 0.6);
             backdrop-filter: blur(16px);
@@ -73,7 +72,6 @@
             background-color: rgba(5, 5, 5, 0.95) !important;
         }
 
-        /* Reveal Animations */
         .reveal {
             opacity: 0;
             transform: translateY(30px);
@@ -84,7 +82,6 @@
             transform: translateY(0);
         }
 
-        /* Premium Form Inputs */
         input, textarea {
             background: transparent;
             border: none;
@@ -127,10 +124,10 @@
         </a>
 
         <nav class="hidden md:flex gap-10 items-center text-[13px] font-bold uppercase tracking-[0.2em] text-gray-200">
-            <a href="studio.html" class="nav-link hover:text-brand-accent transition-colors">Studio</a>
-            <a href="expertise.html" class="nav-link hover:text-brand-accent transition-colors">Expertise</a>
-            <a href="works.html" class="nav-link hover:text-brand-accent transition-colors">Works</a>
-            <a href="inquire.html" class="nav-link text-brand-accent flex items-center gap-2 group">
+            <a href="studio/index.html" class="nav-link hover:text-brand-accent transition-colors">Studio</a>
+            <a href="expertise/index.html" class="nav-link hover:text-brand-accent transition-colors">Expertise</a>
+            <a href="works/index.html" class="nav-link hover:text-brand-accent transition-colors">Works</a>
+            <a href="inquire/index.html" class="nav-link text-brand-accent flex items-center gap-2 group">
                 <span class="w-12 h-px bg-brand-accent transition-all duration-300"></span>
                 Inquire
             </a>
@@ -145,10 +142,10 @@
     <div id="mobile-menu" class="fixed inset-0 bg-brand-base/98 backdrop-blur-xl z-40 flex flex-col justify-center px-8 opacity-0 pointer-events-none transition-all duration-500">
         <nav class="flex flex-col gap-8 text-4xl font-light tracking-tight">
             <a href="index.html" class="nav-link mobile-nav-link text-gray-500 hover:text-white transition-colors">Home.</a>
-            <a href="studio.html" class="nav-link mobile-nav-link text-gray-500 hover:text-white transition-colors">Studio.</a>
-            <a href="expertise.html" class="nav-link mobile-nav-link text-gray-500 hover:text-white transition-colors">Expertise.</a>
-            <a href="works.html" class="nav-link mobile-nav-link text-gray-500 hover:text-white transition-colors">Works.</a>
-            <a href="inquire.html" class="nav-link mobile-nav-link text-brand-accent font-medium mt-4">Contact.</a>
+            <a href="studio/index.html" class="nav-link mobile-nav-link text-gray-500 hover:text-white transition-colors">Studio.</a>
+            <a href="expertise/index.html" class="nav-link mobile-nav-link text-gray-500 hover:text-white transition-colors">Expertise.</a>
+            <a href="works/index.html" class="nav-link mobile-nav-link text-gray-500 hover:text-white transition-colors">Works.</a>
+            <a href="inquire/index.html" class="nav-link mobile-nav-link text-brand-accent font-medium mt-4">Contact.</a>
         </nav>
     </div>
 
@@ -274,10 +271,10 @@
             <div class="md:col-span-3 lg:col-span-3">
                 <h4 class="text-white text-[17px] font-semibold mb-6 tracking-wide">Quick Links</h4>
                 <ul class="flex flex-col gap-4 text-gray-400 text-[15px] font-light">
-                    <li><a href="studio.html" class="nav-link hover:text-brand-accent transition-colors">About Us</a></li>
-                    <li><a href="expertise.html" class="nav-link hover:text-brand-accent transition-colors">Services</a></li>
-                    <li><a href="works.html" class="nav-link hover:text-brand-accent transition-colors">Projects</a></li>
-                    <li><a href="inquire.html" class="nav-link hover:text-brand-accent transition-colors">Contact Us</a></li>
+                    <li><a href="studio/index.html" class="nav-link hover:text-brand-accent transition-colors">About Us</a></li>
+                    <li><a href="expertise/index.html" class="nav-link hover:text-brand-accent transition-colors">Expertise</a></li>
+                    <li><a href="works/index.html" class="nav-link hover:text-brand-accent transition-colors">Works</a></li>
+                    <li><a href="inquire/index.html" class="nav-link hover:text-brand-accent transition-colors">Inquire</a></li>
                 </ul>
             </div>
 
@@ -329,7 +326,6 @@
     </a>
 
     <script>
-        /** PAGE NAVIGATION LOGIC */
         document.querySelectorAll('.nav-link').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 const targetId = this.getAttribute('href');
@@ -344,7 +340,6 @@
             });
         });
 
-        /** HEADER SCROLL LOGIC */
         const header = document.getElementById('header');
         window.addEventListener('scroll', () => {
             if (window.scrollY > 50) {
@@ -354,7 +349,6 @@
             }
         }, { passive: true });
 
-        /** MOBILE MENU TOGGLE */
         const menuToggle = document.getElementById('menu-toggle');
         const mobileMenu = document.getElementById('mobile-menu');
         const line1 = document.getElementById('line1');
@@ -375,7 +369,6 @@
         }
         menuToggle.addEventListener('click', toggleMobileMenu);
 
-        /** SCROLL REVEAL */
         const revealElements = document.querySelectorAll('.reveal');
         const revealObserver = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
@@ -388,7 +381,6 @@
         revealElements.forEach(el => revealObserver.observe(el));
         setTimeout(() => document.querySelectorAll('#hero-img, .reveal:first-child').forEach(el => el.classList.add('active')), 100);
 
-        /** HERO PARALLAX */
         const heroImg = document.getElementById('hero-img');
         if(heroImg) {
             window.addEventListener('scroll', () => {
